@@ -1,0 +1,64 @@
+{
+  "name": "reef-fish-game",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server",
+    "contracts"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c cyan,green \"tsx watch server/src/server.ts\" \"vite --config client/vite.config.ts\"",
+    "dev:server": "tsx watch server/src/server.ts",
+    "dev:client": "vite --config client/vite.config.ts",
+    "build": "tsc --noEmit && vite build --config client/vite.config.ts",
+    "start": "tsx server/src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write client server contracts tests scripts *.json *.ts",
+    "smoke:live": "tsx scripts/smoke-live.ts",
+    "db:migrate:neon": "tsx scripts/migrate-to-neon.ts",
+    "db:verify": "tsx scripts/verify-neon.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "@neondatabase/serverless": "^1.2.0",
+    "@node-rs/argon2": "^2.0.2",
+    "cookie-parser": "^1.4.7",
+    "csv-parse": "^7.0.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "google-auth-library": "^10.5.0",
+    "helmet": "^8.1.0",
+    "jose": "^6.1.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.9",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/supertest": "^6.0.3",
+    "@vitejs/plugin-react": "^5.1.0",
+    "concurrently": "^9.2.1",
+    "prettier": "^3.9.10",
+    "supertest": "^7.1.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^5.0.5"
+  }
+}

@@ -1,0 +1,18 @@
+// [AI-ASSISTED: Codex, 2026-10-21] Shared application error boundary.
+export class AppError extends Error {
+  constructor(
+    public status: number,
+    public code: string,
+    message: string,
+  ) {
+    super(message);
+  }
+}
+export function ensure(
+  condition: unknown,
+  status: number,
+  code: string,
+  message: string,
+): asserts condition {
+  if (!condition) throw new AppError(status, code, message);
+}
